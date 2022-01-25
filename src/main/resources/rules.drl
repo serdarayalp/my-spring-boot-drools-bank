@@ -1,0 +1,15 @@
+import  de.mydomain.drools.bank.model.DepositRequest;
+
+rule "Fixed"
+    when
+        depositObject : DepositRequest( loanType=="Fixed" && durationInYear >= 1 && durationInYear < 2 && age < 60);
+    then
+        depositObject.setInterestRate("5%");
+end;
+
+rule "Recurring"
+    when
+        depositObject : DepositRequest( loanType=="Recurring" && durationInYear >= 1 && durationInYear < 2 && age < 60);
+    then
+        depositObject.setInterestRate("3%");
+end;
